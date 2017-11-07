@@ -1,0 +1,63 @@
+{% extends 'acc_views/base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+{% if object_list %}
+    <h1>Here are all of the users we have</h1>
+<ul class="list-group">
+    {% for user in object_list %}
+    <li class="list-group-item ">
+        <a class="" href="{%  url 'acc_views:detail' user.id%}">{{ user.first_name }} {{ user.last_name }}</a>
+        <form action="{% url 'acc_views:user-edit' user.id%} " method="post" style="display: inline">
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value="{{ user.id }}"/>
+        <button type="submit" class="btn btn-secondary">
+            <span class="glyphicon glyphicon-edit"></span> Edit
+        </button>
+        </form>
+
+        <form action="{% url 'acc_views:user-delete' user.id%} " method="post" style="display: inline">
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value="{{ user.id }}"/>
+        <button type="submit" class="btn btn-danger" a>
+            <span class="glyphicon glyphicon-remove"></span> Delete
+        </button>
+        </form>
+        </li>
+    {% endfor %}
+</ul>
+    {% else %}
+    <h3>This user doesn't exist</h3>
+
+{% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

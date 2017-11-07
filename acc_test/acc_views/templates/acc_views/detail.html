@@ -1,0 +1,29 @@
+{% extends 'acc_views/base.html' %}
+{% block title %} Detail{% endblock %}
+{% block body %}
+
+
+<img src="{{ users.user_picture.url }} " class="img-responsive"   width="300"/>
+    <br/>
+<ul >
+    <li >First name: {{ users.first_name }}
+        <br>
+    <li>Last name: {{ users.last_name }}</li>
+    <li>email: {{ users.email_address }}</li>
+    <li>Date Created: {{ users.registration_date }}</li>
+        {% if users.accounts_set.all %}
+       <ol>
+           {% for ac in users.accounts_set.all %}
+    <li> Balance: {{ ac.balance }} Description: {{ ac.acc_description }}</li>
+
+    {% endfor %}
+       {% endif %}
+       </ol>
+
+
+
+
+
+</ul>
+{% endblock %}
+
